@@ -10,4 +10,8 @@ test.describe('Registration tests', () => {
     test('Create new user', async() => {
        await registerPage.createNewUser(); 
     });
+
+    test('Clear create new user form', async() => {
+        await registerPage.clearCreateNewUserForm();
+    })
 })

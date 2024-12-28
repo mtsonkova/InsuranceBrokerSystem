@@ -57,4 +57,26 @@ export class RegisterPage extends BasePage{
         await expect(this.page.url()).toBe('https://demo.guru99.com/insurance/v3/index.php');
     }
 
+    async clearCreateNewUserForm() {
+        await this.selectOptionInDropdown(this.SignUpForm.titleDropdown, 'Ms');
+        await this.fill(this.SignUpForm.firstName, 'Daniela');
+        await this.fill(this.SignUpForm.surName, 'Ivanova');
+        await this.fill(this.SignUpForm.phone, '1234321');
+        await this.selectOptionInDropdown(this.SignUpForm.dateOfBirth.yearDropdown, '1975');
+        await this.selectOptionInDropdown(this.SignUpForm.dateOfBirth.monthDropdown, 'June');
+        await this.selectOptionInDropdown(this.SignUpForm.dateOfBirth.dayDropdown, '16');
+        await this.check(this.SignUpForm.license.provisional);
+        await this.selectOptionInDropdown(this.SignUpForm.licencePeriodDropdown, '5');
+        await this.selectOptionInDropdown(this.SignUpForm.occupationDropdown, 'Scientist');
+        await this.fill(this.SignUpForm.address.street, '21 Oak Avenue');
+        await this.fill(this.SignUpForm.address.city, 'Dalas');
+        await this.fill(this.SignUpForm.address.county, 'Omaha');
+        await this.fill(this.SignUpForm.address.postCode, '34323');
+        await this.fill(this.SignUpForm.email, 'usermail123@test.qa')
+        await this.fill(this.SignUpForm.password, password);
+        await this.fill(this.SignUpForm.confirmPassword, password);
+        await this.click(this.SignUpForm.btnReset);
+        await expect(this.page.url()).not.toBe('https://demo.guru99.com/insurance/v3/index.php');
+    }
+
 }

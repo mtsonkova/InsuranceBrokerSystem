@@ -1,4 +1,6 @@
+import { BasePage } from './BasePage';
 import {password} from '../helpers/userData';
+import {expect} from '@playwright/test';
 
 export class RegisterPage extends BasePage{
     constructor(page) {
@@ -18,7 +20,7 @@ export class RegisterPage extends BasePage{
             provisional: '#licencetype_f',
             },
             licencePeriodDropdown: '#user_licenceperiod',
-            ocupationDropdown: '#user_occupation_id',
+            occupationDropdown: '#user_occupation_id',
             address: {
                 street: '#user_address_attributes_street',
                 city: '#user_address_attributes_city',
@@ -38,19 +40,21 @@ export class RegisterPage extends BasePage{
         await this.fill(this.SignUpForm.firstName, 'Daniela');
         await this.fill(this.SignUpForm.surName, 'Ivanova');
         await this.fill(this.SignUpForm.phone, '1234321');
-        await this.selectOptionInDropdown(this.SignUpForm.date.OfBirthyearDropdown, '1975');
+        await this.selectOptionInDropdown(this.SignUpForm.dateOfBirth.yearDropdown, '1975');
         await this.selectOptionInDropdown(this.SignUpForm.dateOfBirth.monthDropdown, 'June');
         await this.selectOptionInDropdown(this.SignUpForm.dateOfBirth.dayDropdown, '16');
         await this.check(this.SignUpForm.license.provisional);
         await this.selectOptionInDropdown(this.SignUpForm.licencePeriodDropdown, '5');
-        await this.selectOptionInDropdown(this.SignUpForm.ocupationDropdown, 'Scientist');
+        await this.selectOptionInDropdown(this.SignUpForm.occupationDropdown, 'Scientist');
         await this.fill(this.SignUpForm.address.street, '21 Oak Avenue');
         await this.fill(this.SignUpForm.address.city, 'Dalas');
         await this.fill(this.SignUpForm.address.county, 'Omaha');
         await this.fill(this.SignUpForm.address.postCode, '34323');
+        await this.fill(this.SignUpForm.email, 'usermail123@test.qa')
         await this.fill(this.SignUpForm.password, password);
         await this.fill(this.SignUpForm.confirmPassword, password);
         await this.click(this.SignUpForm.btnCreate);
+        await expect(this.page.url()).toBe('https://demo.guru99.com/insurance/v3/index.php');
     }
 
 }

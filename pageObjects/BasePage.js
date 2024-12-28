@@ -14,15 +14,15 @@ export class BasePage{
     }
 
     async check(locator, page = this.page) {
-        await page.getByRole(locator).check();
+        await page.locator(locator).check();
     }
 
     async selectOptionInDropdown(locator, page= this.page, value) {
-        let element = page.locator;
+        let element = page.locator(locator);
         await element.selectOption(value);
     }
 
     async verifyText(locator, page=this.page, text) {
-        await expect(page.locator).toHaveText(text);
+        await expect(page.locator(locator)).toHaveText(text);
     }
 }

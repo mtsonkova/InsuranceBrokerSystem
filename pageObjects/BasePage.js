@@ -5,24 +5,24 @@ export class BasePage{
         this.page = page;
     }
 
-    async click(locator, page = this.page) {
-        await page.click(locator);
+    async click(selector, page = this.page) {
+        await page.click(selector);
     }
 
-    async fill(locator, page = this.page, text) {
-        await page.fill(locator, text);
+    async fill(selector, text, page = this.page) {
+        await page.fill(selector, text);
     }
 
-    async check(locator, page = this.page) {
-        await page.getByRole(locator).check();
+    async check(selector, page = this.page) {
+        await page.locator(selector).check();
     }
 
-    async selectOptionInDropdown(locator, page= this.page, value) {
-        let element = page.locator;
+    async selectOptionInDropdown(selector, value, page= this.page) {
+        let element = page.locator(selector);
         await element.selectOption(value);
     }
 
-    async verifyText(locator, page=this.page, text) {
-        await expect(page.locator).toHaveText(text);
+    async verifyText(selector, text, page=this.page) {
+        await expect(page.locator(selector)).toHaveText(text);
     }
 }

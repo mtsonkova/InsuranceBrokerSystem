@@ -1,11 +1,16 @@
 import { BasePage } from "./BasePage";
 
-class HomePage extends BasePage{
+export class HomePage extends BasePage{
     constructor(page) {
         super(page);
-        userName = 'h4';
-        logoutBtn = 'input[type="submit"]';
-        pageTitle = 'h2';
+        this.homeHeader= {
+        userName:'h4',
+        logoutBtn:'input[type="submit"]',
+        }
+        this.homeFooter = {
+            pageTitle: 'h2',
+        }
+       
         this.menu = {
             home: '#home',
             requestQuotation: '#newquote',
@@ -16,11 +21,11 @@ class HomePage extends BasePage{
     }
 
     async logout() {
-        await this.logoutBtn.click();
+        await this.click(this.homeHeader.logoutBtn);
     }
 
     async checkPageTitle() {
-        await this.verifyText(pageTitle, 'Broker Insurance WebPage');
+        await this.verifyText(this.homeFooter.pageTitle, 'Broker Insurance WebPage');
     }
 
     async goToHome() {
@@ -41,6 +46,10 @@ class HomePage extends BasePage{
 
     async goToEditProfile() {
         await this.menu.editProfile.click();
+    }
+
+    async checkUserName() {
+        await expect(this.homeHeader.userName.textContent()).not.to.Be(' ');
     }
     
 }

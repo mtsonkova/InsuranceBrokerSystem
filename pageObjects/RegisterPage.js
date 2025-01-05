@@ -1,5 +1,5 @@
 import { BasePage } from './BasePage';
-import {password} from '../helpers/userData';
+import {email, password} from '../helpers/userData';
 import {expect} from '@playwright/test';
 
 export class RegisterPage extends BasePage{
@@ -72,7 +72,7 @@ export class RegisterPage extends BasePage{
         await this.fill(this.SignUpForm.address.city, 'Dalas');
         await this.fill(this.SignUpForm.address.county, 'Omaha');
         await this.fill(this.SignUpForm.address.postCode, '34323');
-        await this.fill(this.SignUpForm.email, 'usermail123@test.qa')
+        await this.fill(this.SignUpForm.email, email)
         await this.fill(this.SignUpForm.password, password);
         await this.fill(this.SignUpForm.confirmPassword, password);
         await this.click(this.SignUpForm.btnReset);

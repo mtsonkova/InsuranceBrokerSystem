@@ -9,6 +9,9 @@ export class BasePage{
         await page.click(selector);
     }
 
+    async check(selector, page = this.page) {
+        await page.check(selector);
+    }
     async fill(selector, text, page = this.page) {
         await page.fill(selector, text);
     }

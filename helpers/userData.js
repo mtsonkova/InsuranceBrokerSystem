@@ -1,2 +1,2 @@
-export const email = 'usermail123@test.qa';
-export const password = 'Aa123456!@#';
+export const email = 'usermail321@test.qa';
+export const password = 'qatestpass';
